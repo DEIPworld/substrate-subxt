@@ -92,6 +92,7 @@ pub use crate::{
         EventTypeRegistry,
         EventsDecoder,
         RawEvent,
+        Raw,
     },
     extrinsic::{
         PairSigner,
