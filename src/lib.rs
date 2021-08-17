@@ -120,7 +120,7 @@ pub use crate::{
     },
     substrate_subxt_proc_macro::*,
 };
-use crate::{
+pub use crate::{
     frame::system::{
         AccountStoreExt,
         Phase,
@@ -442,6 +442,15 @@ impl<T: Runtime> Client<T> {
         to: Option<T::Hash>,
     ) -> Result<Vec<StorageChangeSet<<T as System>::Hash>>, Error> {
         self.rpc.query_storage(keys, from, to).await
+    }
+    
+    /// Query storage at
+    pub async fn query_storage_at(
+        &self,
+        keys: &[StorageKey],
+        at: Option<T::Hash>,
+    ) -> Result<Vec<StorageChangeSet<<T as System>::Hash>>, Error> {
+        self.rpc.query_storage_at(keys, at).await
     }
 
     /// Get a header
