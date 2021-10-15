@@ -352,6 +352,19 @@ impl<T: Runtime> Rpc<T> {
             .await
             .map_err(Into::into)
     }
+    
+    /// storage_pairs
+    pub async fn storage_pairs(
+        &self,
+        prefix: StorageKey,
+        at: Option<T::Hash>,
+    ) -> Result<Vec<(StorageKey, StorageData)>, Error> {
+        let params = &[to_json_value(prefix)?, to_json_value(at)?];
+        self.client
+            .request("state_getPairs", params)
+            .await
+            .map_err(Into::into)
+    }
 
     /// Fetch the genesis hash
     pub async fn genesis_hash(&self) -> Result<T::Hash, Error> {

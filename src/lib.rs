@@ -452,6 +452,15 @@ impl<T: Runtime> Client<T> {
     ) -> Result<Vec<StorageChangeSet<<T as System>::Hash>>, Error> {
         self.rpc.query_storage_at(keys, at).await
     }
+    
+    /// storage_pairs
+    pub async fn storage_pairs(
+        &self,
+        prefix: StorageKey,
+        hash: Option<T::Hash>
+    ) -> Result<Vec<(StorageKey, StorageData)>, Error> {
+        self.rpc.storage_pairs(prefix, hash).await
+    }
 
     /// Get a header
     pub async fn header<H>(&self, hash: Option<H>) -> Result<Option<T::Header>, Error>
