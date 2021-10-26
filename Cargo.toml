@@ -22,6 +22,8 @@ client = ["substrate-subxt-client"]
 # jsonrpsee can be configured to use tokio02 or tokio1.
 tokio02 = ["jsonrpsee-http-client/tokio02", "jsonrpsee-ws-client/tokio02"]
 tokio1 = ["jsonrpsee-http-client/tokio1", "jsonrpsee-ws-client/tokio1"]
+# Support patches for substrate primitives provided by an Octopus-network.
+octopus = []
 
 [dependencies]
 async-trait = "0.1.49"

@@ -140,6 +140,10 @@ impl RuntimeError {
             DispatchError::ConsumerRemaining => Ok(Self::ConsumerRemaining),
             DispatchError::NoProviders => Ok(Self::NoProviders),
             DispatchError::Other(msg) => Ok(Self::Other(msg.into())),
+            #[cfg(feature = "octopus")]
+            DispatchError::Token(_) => Ok(Self::Other("TokenError".into())),
+            #[cfg(feature = "octopus")]
+            DispatchError::Arithmetic(_) => Ok(Self::Other("ArithmeticError".into())),
         }
     }
 }
