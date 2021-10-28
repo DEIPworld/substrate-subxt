@@ -529,7 +529,10 @@ impl TryFrom<RuntimeMetadataPrefixed> for Metadata {
             return Err(ConversionError::InvalidPrefix.into())
         }
         let meta = match metadata.1 {
+            #[cfg(not(feature = "octopus"))]
             RuntimeMetadata::V12(meta) => meta,
+            #[cfg(feature = "octopus")]
+            RuntimeMetadata::V13(meta) => meta,
             _ => return Err(ConversionError::InvalidVersion.into()),
         };
         let mut modules = HashMap::new();
